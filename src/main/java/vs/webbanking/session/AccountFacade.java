@@ -1,9 +1,12 @@
 package vs.webbanking.session;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import vs.webbanking.entities.Account;
+import vs.webbanking.entities.Transaxion;
 
 /**
  *
@@ -22,6 +25,22 @@ public class AccountFacade extends AbstractFacade<Account> {
 
     public AccountFacade() {
         super(Account.class);
+    }
+    
+    public double getBalance(String ownerName) {
+        Account acc = (Account) em.createNamedQuery("Account.findByOwner")
+                .setParameter("owner", ownerName)
+                .getSingleResult();
+        
+        return acc.getBalance();
+    }
+    
+    public Account find(String ownerName) {
+        Account acc = (Account) em.createNamedQuery("Account.findByOwner")
+                .setParameter("owner", ownerName)
+                .getSingleResult();
+        
+        return acc;
     }
     
 }

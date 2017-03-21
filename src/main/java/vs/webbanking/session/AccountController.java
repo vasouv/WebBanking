@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Named;
+import vs.webbanking.entities.Account;
 import vs.webbanking.entities.Transaxion;
 
 /**
@@ -16,6 +17,9 @@ public class AccountController {
     
     @EJB
     private AccountFacade accountFacade;
+    
+    @EJB
+    private TransaxionFacade transaxionFacade;
     
     public String deposit(double amount){
         throw new UnsupportedOperationException("deposit method not done");
@@ -30,11 +34,12 @@ public class AccountController {
     }
     
     public double getBalance(String account) {
-        throw new UnsupportedOperationException("getBalance method not done");
+        return accountFacade.getBalance(account);
     }
     
-    public List<Transaxion> getHistory() {
-        throw new UnsupportedOperationException("getHistory method not done");
+    public List<Transaxion> getHistory(String account) {
+        return transaxionFacade.findTransaxionsByAccountName(account);
+//        return transaxionFacade.findDefaultTransaxions();
     }
     
 }

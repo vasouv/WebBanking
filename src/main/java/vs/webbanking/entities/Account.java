@@ -50,10 +50,8 @@ public class Account implements Serializable {
     @NotNull
     @Column(name = "BALANCE")
     private double balance;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "toaccount")
-    private List<Transaxion> transaxionsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromaccount")
-    private List<Transaxion> transaxionsList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountid")
+    private List<Transaxion> transaxionList;
 
     public Account() {
     }
@@ -102,21 +100,12 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    public List<Transaxion> getTransaxionsList() {
-        return transaxionsList;
+    public List<Transaxion> getTransaxionList() {
+        return transaxionList;
     }
 
-    public void setTransaxionsList(List<Transaxion> transaxionsList) {
-        this.transaxionsList = transaxionsList;
-    }
-
-    @XmlTransient
-    public List<Transaxion> getTransaxionsList1() {
-        return transaxionsList1;
-    }
-
-    public void setTransaxionsList1(List<Transaxion> transaxionsList1) {
-        this.transaxionsList1 = transaxionsList1;
+    public void setTransaxionList(List<Transaxion> transaxionList) {
+        this.transaxionList = transaxionList;
     }
 
     @Override

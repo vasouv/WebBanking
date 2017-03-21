@@ -25,12 +25,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "TRANSAXIONS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Transaxions.findAll", query = "SELECT t FROM Transaxions t")
-    , @NamedQuery(name = "Transaxions.findByTxid", query = "SELECT t FROM Transaxions t WHERE t.txid = :txid")
-    , @NamedQuery(name = "Transaxions.findByTxdate", query = "SELECT t FROM Transaxions t WHERE t.txdate = :txdate")
-    , @NamedQuery(name = "Transaxions.findByAmount", query = "SELECT t FROM Transaxions t WHERE t.amount = :amount")
-    , @NamedQuery(name = "Transaxions.findByBalance", query = "SELECT t FROM Transaxions t WHERE t.balance = :balance")
-    , @NamedQuery(name = "Transaxions.findByDescription", query = "SELECT t FROM Transaxions t WHERE t.description = :description")})
+    @NamedQuery(name = "Transaxion.findAll", query = "SELECT t FROM Transaxion t")
+    , @NamedQuery(name = "Transaxion.findByTxid", query = "SELECT t FROM Transaxion t WHERE t.txid = :txid")
+    , @NamedQuery(name = "Transaxion.findByTxdate", query = "SELECT t FROM Transaxion t WHERE t.txdate = :txdate")
+    , @NamedQuery(name = "Transaxion.findByAmount", query = "SELECT t FROM Transaxion t WHERE t.amount = :amount")
+    , @NamedQuery(name = "Transaxion.findByBalance", query = "SELECT t FROM Transaxion t WHERE t.balance = :balance")
+    , @NamedQuery(name = "Transaxion.findByDescription", query = "SELECT t FROM Transaxion t WHERE t.description = :description")})
 public class Transaxion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,12 +57,9 @@ public class Transaxion implements Serializable {
     @Size(min = 1, max = 128)
     @Column(name = "DESCRIPTION")
     private String description;
-    @JoinColumn(name = "TOACCOUNT", referencedColumnName = "ACCID")
+    @JoinColumn(name = "ACCOUNTID", referencedColumnName = "ACCID")
     @ManyToOne(optional = false)
-    private Account toaccount;
-    @JoinColumn(name = "FROMACCOUNT", referencedColumnName = "ACCID")
-    @ManyToOne(optional = false)
-    private Account fromaccount;
+    private Account accountid;
 
     public Transaxion() {
     }
@@ -119,20 +116,12 @@ public class Transaxion implements Serializable {
         this.description = description;
     }
 
-    public Account getToaccount() {
-        return toaccount;
+    public Account getAccountid() {
+        return accountid;
     }
 
-    public void setToaccount(Account toaccount) {
-        this.toaccount = toaccount;
-    }
-
-    public Account getFromaccount() {
-        return fromaccount;
-    }
-
-    public void setFromaccount(Account fromaccount) {
-        this.fromaccount = fromaccount;
+    public void setAccountid(Account accountid) {
+        this.accountid = accountid;
     }
 
     @Override
@@ -157,7 +146,7 @@ public class Transaxion implements Serializable {
 
     @Override
     public String toString() {
-        return "vs.webbanking.entities.Transaxions[ txid=" + txid + " ]";
+        return "vs.webbanking.entities.Transaxion[ txid=" + txid + " ]";
     }
     
 }
