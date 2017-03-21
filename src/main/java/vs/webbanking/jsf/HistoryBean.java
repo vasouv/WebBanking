@@ -31,13 +31,12 @@ public class HistoryBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        balance = accCon.getBalance("chris");
-        transaxionList.addAll(accCon.getHistory("chris"));
-        System.out.println(transaxionList.size());
+        balance = accCon.getBalance("maik");
+        transaxionList.addAll(accCon.getHistory("maik"));
     }
 
     public double getBalance() {
-        return accCon.getBalance("chris");
+        return accCon.getBalance("maik");
     }
 
     public void setBalance(double balance) {
@@ -45,7 +44,7 @@ public class HistoryBean implements Serializable {
     }
 
     public List<Transaxion> getTransaxionList() {
-        return accCon.getHistory("chris");
+        return accCon.getHistory("maik");
     }
 
     public void setTransaxionList(List<Transaxion> transaxionList) {
