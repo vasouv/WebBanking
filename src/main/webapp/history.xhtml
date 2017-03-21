@@ -15,32 +15,31 @@
 
             <ui:define name="content">
                 <h1>History of Transactions</h1>
-                <p:outputLabel for="currentBalance" value="Current Balance:"/>
-                <h:outputText id="currentBalance" value="670"/>
-                <hr/>
-                <p:dataTable id="historyTable">
-                    <p:column headerText="Tx ID">
-                        
-                    </p:column>
-                    <p:column headerText="From">
-                        
-                    </p:column>
-                    <p:column headerText="To">
-                        
-                    </p:column>
-                    <p:column headerText="When">
-                        
-                    </p:column>
-                    <p:column headerText="Amount">
-                        
-                    </p:column>
-                    <p:column headerText="Balance">
-                        
-                    </p:column>
-                    <p:column headerText="Description">
-                        
-                    </p:column>
-                </p:dataTable>
+                <h:form>
+                    <p:outputLabel for="currentBalance" value="Current Balance:"/>
+                    <h:outputText id="currentBalance" value="#{historyBean.balance}"/>
+                    <hr/>
+                    <p:dataTable id="historyTable" value="#{historyBean.transaxionList}" var="transaxion">
+                        <p:column headerText="Tx ID">
+                            <h:outputText value="#{transaxion.txid}"/>
+                        </p:column>
+                        <p:column headerText="Account">
+                            <h:outputText value="#{transaxion.accountid.owner}"/>
+                        </p:column>
+                        <p:column headerText="When">
+                            <h:outputText value="#{transaxion.txdate}"/>
+                        </p:column>
+                        <p:column headerText="Amount">
+                            <h:outputText value="#{transaxion.amount}"/>
+                        </p:column>
+                        <p:column headerText="Balance">
+                            <h:outputText value="#{transaxion.balance}"/>
+                        </p:column>
+                        <p:column headerText="Description">
+                            <h:outputText value="#{transaxion.description}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
             </ui:define>
 
         </ui:composition>
