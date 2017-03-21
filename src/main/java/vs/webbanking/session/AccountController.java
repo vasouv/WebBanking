@@ -42,4 +42,9 @@ public class AccountController {
 //        return transaxionFacade.findDefaultTransaxions();
     }
     
+    public Account findAccount(String name) {
+        return accountFacade.find(name);
+    }
+    
+    
 }

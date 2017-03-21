@@ -27,13 +27,19 @@
                             <h:outputText value="#{transaxion.accountid.owner}"/>
                         </p:column>
                         <p:column headerText="When">
-                            <h:outputText value="#{transaxion.txdate}"/>
+                            <h:outputText value="#{transaxion.txdate}">
+                                <f:convertDateTime dateStyle="full" timeStyle="long" type="both"/>
+                            </h:outputText>
                         </p:column>
                         <p:column headerText="Amount">
-                            <h:outputText value="#{transaxion.amount}"/>
+                            <h:outputText value="#{transaxion.amount}">
+                                <f:convertNumber currencySymbol="EUR" type="currency"/>
+                            </h:outputText>
                         </p:column>
                         <p:column headerText="Balance">
-                            <h:outputText value="#{transaxion.balance}"/>
+                            <h:outputText value="#{transaxion.balance}">
+                                <f:convertNumber currencySymbol="EUR" type="currency"/>
+                            </h:outputText>
                         </p:column>
                         <p:column headerText="Description">
                             <h:outputText value="#{transaxion.description}"/>
