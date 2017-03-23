@@ -17,17 +17,19 @@
                 <h1>Withdraw and deposit money</h1>
                 <hr/>
                 <h:form>
+                    <p:growl id="atmGrowl" showDetail="true" life="3000" />
                     <h:panelGrid columns="2">
                         <p:outputLabel for="atmAction" value="Action:" />
-                        <p:selectOneMenu id="atmAction">
+                        <p:selectOneMenu id="atmAction" value="#{atmBean.actionToExecute}">
+                            <f:selectItem itemLabel="Select One" itemValue="" />
                             <f:selectItem itemLabel="Deposit" itemValue="deposit" />
-                            <f:selectItem itemLabel="Withdraw" itemValue="withdrw" />
+                            <f:selectItem itemLabel="Withdraw" itemValue="withdraw" />
                         </p:selectOneMenu>
                         <p:outputLabel for="atmAmount" value="Amount:"/>
-                        <p:inputText id="atmAmount" />
+                        <p:inputText id="atmAmount" value="#{atmBean.amount}" />
                     </h:panelGrid>
                     <br/>
-                    <p:commandButton value="Execute"/>
+                    <p:commandButton value="Submit" actionListener="#{atmBean.handleAtmAction}"/>
                 </h:form>
             </ui:define>
 

@@ -43,4 +43,9 @@ public class AccountFacade extends AbstractFacade<Account> {
         return acc;
     }
     
+    public boolean hasCapacityLimit(String ownerName){
+        Account acc = find(ownerName);
+        return acc.getCapacity() != 0.0;
+    }
+    
 }

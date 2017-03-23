@@ -21,15 +21,25 @@ public class AccountController {
     @EJB
     private TransaxionFacade transaxionFacade;
     
-    public String deposit(double amount){
-        throw new UnsupportedOperationException("deposit method not done");
+    public void deposit(double amount){
+        if (accountFacade.hasCapacityLimit("maik")) {
+            //do deposit at once
+        } else{
+            //check amount to capacity
+            //if amount + balance > capacity throw insufficient funds exception
+            //else deposit
+        }
     }
     
-    public String withdraw(double amount){
-        throw new UnsupportedOperationException("withdraw method not done");
+    public void withdraw(double amount){
+        if (amount > accountFacade.getBalance("maik")) {
+            //throw insufficient funds
+        } else{
+            //do withdraw
+        }
     }
     
-    public String transfer(String toAccount, double amount) {
+    public void transfer(String toAccount, double amount) {
         throw new UnsupportedOperationException("transfer method not done");
     }
     
@@ -39,12 +49,10 @@ public class AccountController {
     
     public List<Transaxion> getHistory(String account) {
         return transaxionFacade.findTransaxionsByAccountName(account);
-//        return transaxionFacade.findDefaultTransaxions();
     }
     
     public Account findAccount(String name) {
         return accountFacade.find(name);
     }
-    
     
 }
